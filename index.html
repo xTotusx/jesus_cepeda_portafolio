@@ -46,7 +46,8 @@
         }
 
         .screen-section {
-            height: 100vh;
+            /* CAMBIO CRÍTICO: min-height permite que si hay muchas carpetas, la sección crezca */
+            min-height: 100vh;
             width: 100vw;
             scroll-snap-align: start;
             display: flex;
@@ -54,7 +55,8 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 20px;
+            padding: 80px 20px;
+            /* Más espacio para respirar arriba y abajo */
         }
 
         /* ===================================================
@@ -139,9 +141,6 @@
            =================================================== */
         #acerca {
             background-color: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .acerca-wrapper {
@@ -179,7 +178,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background-image: url('./fts/retrato-fotografo.jpg');
+            background-image: url('./fts/retrato-fotografo.jpeg');
             background-size: cover;
             background-position: center;
             filter: blur(20px) brightness(0.6);
@@ -202,18 +201,22 @@
         }
 
         /* ===================================================
-           PANTALLA 3: MIS PROYECTOS (Cover Estático)
+           PANTALLA 3: MIS PROYECTOS (Acomodo Flex)
            =================================================== */
         #proyectos {
             background-color: #151515;
+            justify-content: flex-start;
+            /* Para que al haber muchas carpetas, fluyan desde arriba */
         }
 
         .folders-grid-container {
-            width: 90%;
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            width: 95%;
+            max-width: 1400px;
+            /* CAMBIO CRÍTICO: Flexbox permite el centrado inteligente de filas incompletas */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
             padding: 20px;
             margin-top: 30px;
         }
@@ -223,6 +226,9 @@
             border-radius: 12px;
             overflow: hidden;
             position: relative;
+            /* Flexbasis estira la tarjeta; max-width evita que se haga gigante */
+            flex: 1 1 320px;
+            max-width: 450px;
             aspect-ratio: 16/10;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -260,8 +266,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 20px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+            padding: 25px 20px 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 70%, transparent 100%);
             z-index: 10;
         }
 
@@ -284,6 +290,9 @@
            =================================================== */
         #contacto {
             background-color: #0d0d0d;
+        }
+
+        .section-content {
             text-align: center;
         }
 
@@ -294,7 +303,7 @@
         }
 
         /* ===================================================
-           OVERLAY DE CARPETA ABIERTA (AHORA CON SCROLL LOCK)
+           OVERLAY DE CARPETA ABIERTA 
            =================================================== */
         .overlay {
             position: fixed;
@@ -307,8 +316,6 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity var(--trans-speed) ease;
-
-            /* Scroll Lock para el overlay */
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
@@ -319,7 +326,6 @@
             pointer-events: auto;
         }
 
-        /* Fondo difuminado FIJO que solo se ve detrás del carrete */
         #dynamic-bg-overlay {
             position: fixed;
             top: 0;
@@ -332,7 +338,6 @@
             z-index: -1;
         }
 
-        /* Botón de volver FIJO en la esquina */
         .fixed-back-btn {
             position: fixed;
             top: 30px;
@@ -356,12 +361,10 @@
             color: var(--bg-dark);
         }
 
-        /* --- SECCIÓN 1 DEL OVERLAY: HERO COVER (NÍTIDA) --- */
         .overlay-hero-section {
             height: 100vh;
             width: 100vw;
             scroll-snap-align: start;
-            /* Se bloquea aquí */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -371,7 +374,6 @@
             position: relative;
         }
 
-        /* Filtro oscuro sutil sobre la foto para que el título siempre sea legible */
         .overlay-hero-section::before {
             content: '';
             position: absolute;
@@ -426,14 +428,11 @@
             }
         }
 
-        /* --- SECCIÓN 2 DEL OVERLAY: EL CARRETE DE FOTOS --- */
         .overlay-gallery-section {
             min-height: 100vh;
             width: 100vw;
             scroll-snap-align: start;
-            /* Se bloquea al inicio de esta sección */
             padding: 80px 20px;
-            /* Espacio para el botón volver */
             position: relative;
             z-index: 10;
         }
@@ -584,9 +583,7 @@
     </div>
 
     <div id="gallery-overlay" class="overlay">
-
         <div id="dynamic-bg-overlay"></div>
-
         <button class="fixed-back-btn" onclick="cerrarOverlay()">← Volver</button>
 
         <section class="overlay-hero-section" id="overlay-hero-section">
@@ -640,7 +637,6 @@
                     './fts/espartanos12.jpeg',
                     './fts/espartanos13.jpeg',
                     './fts/espartanos14.jpeg'
-
                 ]
             },
             {
@@ -660,7 +656,6 @@
                     './fts/mazatlan9.jpeg',
                     './fts/mazatlan10.jpeg',
                     './fts/mazatlan-cover.jpeg'
-
                 ]
             },
             {
@@ -736,11 +731,8 @@
         }
 
         function abrirGalería(folder) {
-            // 1. Imagen Nítida para la sección principal (Hero)
             overlayHeroSection.style.backgroundImage = `url('${folder.covers[0]}')`;
             overlayTitle.textContent = folder.title;
-
-            // 2. Imagen difuminada para el fondo de la sección del carrete
             overlayBg.style.backgroundImage = `url('${folder.covers[0]}')`;
 
             currentGalleryPhotos = folder.photos;
@@ -756,9 +748,7 @@
                 photosContainer.appendChild(img);
             });
 
-            // Forzar el scroll del overlay hasta arriba antes de mostrarlo
             overlay.scrollTop = 0;
-
             overlay.classList.add('visible');
             window.addEventListener('keydown', handleKeyboardEvents);
         }

@@ -46,7 +46,6 @@
         }
 
         .screen-section {
-            /* CAMBIO CRÍTICO: min-height permite que si hay muchas carpetas, la sección crezca */
             min-height: 100vh;
             width: 100vw;
             scroll-snap-align: start;
@@ -56,7 +55,6 @@
             align-items: center;
             position: relative;
             padding: 80px 20px;
-            /* Más espacio para respirar arriba y abajo */
         }
 
         /* ===================================================
@@ -201,18 +199,16 @@
         }
 
         /* ===================================================
-           PANTALLA 3: MIS PROYECTOS (Acomodo Flex)
+           PANTALLA 3: MIS PROYECTOS
            =================================================== */
         #proyectos {
             background-color: #151515;
             justify-content: flex-start;
-            /* Para que al haber muchas carpetas, fluyan desde arriba */
         }
 
         .folders-grid-container {
             width: 95%;
             max-width: 1400px;
-            /* CAMBIO CRÍTICO: Flexbox permite el centrado inteligente de filas incompletas */
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -226,7 +222,6 @@
             border-radius: 12px;
             overflow: hidden;
             position: relative;
-            /* Flexbasis estira la tarjeta; max-width evita que se haga gigante */
             flex: 1 1 320px;
             max-width: 450px;
             aspect-ratio: 16/10;
@@ -300,6 +295,31 @@
             font-size: 1.2rem;
             line-height: 1.8;
             color: #ddd;
+        }
+
+        /* Estilos para los enlaces de contacto */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+            align-items: center;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
         }
 
         /* ===================================================
@@ -574,10 +594,17 @@
             <h2 class="acerca-title">Contáctame</h2>
             <div class="section-content">
                 <p class="section-text">
-                    ¿Listo para crear algo extraordinario juntos?<br><br>
-                    Correo: hola@jesuscepeda.com<br>
-                    Instagram: @jesuscepedafoto
+                    ¿Listo para crear algo extraordinario juntos?
                 </p>
+                <div class="contact-links">
+                    <a href="mailto:jesuscepeda.studio@gmail.com" class="contact-link">
+                        ✉️ jesuscepeda.studio@gmail.com
+                    </a>
+                    <a href="https://www.instagram.com/cepeda_studio?igsh=MWtxOW5mNXBuN3lmaw==" target="_blank"
+                        class="contact-link">
+                        📷 @cepeda_studio
+                    </a>
+                </div>
             </div>
         </section>
     </div>

@@ -137,7 +137,7 @@
         }
 
         /* ===================================================
-           PANTALLA 2: ACERCA DE MI (SPLIT SUPER SUAVE Y MOVIL FIX)
+           PANTALLA 2: ACERCA DE MI
            =================================================== */
         #acerca {
             background-color: #111;
@@ -151,7 +151,6 @@
             height: 100%;
         }
 
-        /* Mitad izquierda: Retrato con desvanecimiento ULTRA gradual (Desktop) */
         .acerca-left {
             flex: 1 1 50%;
             position: relative;
@@ -160,7 +159,6 @@
             background-position: center;
         }
 
-        /* Velo oscuro gradual: arranca transparente y se funde al final */
         .acerca-left::after {
             content: '';
             position: absolute;
@@ -168,11 +166,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Ajustado para que el fade sea súper suave de izquierda a derecha */
             background: linear-gradient(to right, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.2) 50%, rgba(17, 17, 17, 0.9) 90%, rgba(17, 17, 17, 1) 100%);
         }
 
-        /* Mitad derecha: Contenido */
         .acerca-right {
             flex: 1 1 50%;
             background-color: #111;
@@ -249,13 +245,10 @@
             letter-spacing: 1px;
         }
 
-        /* ===================================================
-           NUEVO RESPONSIVE PARA MÓVIL (Acerca de mi Fixed)
-           =================================================== */
+        /* --- RESPONSIVE PARA MÓVIL (ACERCA DE MI AJUSTADO) --- */
         @media (max-width: 900px) {
             #acerca {
                 display: block;
-                /* Permite scroll natural si el texto es muy largo */
                 height: auto;
                 min-height: 100vh;
                 overflow-y: visible;
@@ -273,23 +266,22 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 60vh;
-                /* La foto ocupa el 60% de arriba */
+                height: 55vh;
+                /* Menos alto para que se vea más natural */
                 z-index: 1;
                 background-position: top center;
-                /* Evita cortar la cara */
             }
 
-            /* Gradiente vertical para móvil: transparente arriba, oscurece hacia abajo */
+            /* El degradado empieza antes (30%) para que el texto no se mezcle */
             .acerca-left::after {
-                background: linear-gradient(to bottom, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.2) 50%, rgba(17, 17, 17, 0.95) 90%, rgba(17, 17, 17, 1) 100%);
+                background: linear-gradient(to bottom, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.5) 30%, rgba(17, 17, 17, 0.95) 75%, rgba(17, 17, 17, 1) 100%);
             }
 
             .acerca-right {
                 width: 100%;
                 padding: 0 20px 80px 20px;
-                margin-top: 45vh;
-                /* El texto se monta sobre la parte oscura de la foto */
+                margin-top: 40vh;
+                /* Subimos el contenido un poco hacia el área oscura */
                 background-color: transparent;
                 z-index: 2;
                 align-items: center;
@@ -310,11 +302,6 @@
             .acerca-text {
                 font-size: 1rem;
                 margin-bottom: 40px;
-            }
-
-            .btn-work {
-                position: relative;
-                z-index: 3;
             }
 
             .signature {
@@ -413,49 +400,138 @@
         }
 
         /* ===================================================
-           PANTALLA 4: CONTACTO
+           PANTALLA 4: CONTACTO (NUEVO DISEÑO PREMIUM)
            =================================================== */
         #contacto {
             background-color: #0d0d0d;
             padding: 80px 20px;
         }
 
-        .section-content {
-            text-align: center;
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .section-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #ddd;
-        }
-
-        .contact-links {
+        /* --- Lado Izquierdo: Tarjetas Interactivas --- */
+        .contact-cards {
+            flex: 1 1 350px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            margin-top: 30px;
-            align-items: center;
         }
 
-        .contact-link {
+        .contact-card {
             display: flex;
             align-items: center;
-            gap: 15px;
-            color: var(--text-light);
+            gap: 20px;
+            padding: 25px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-decoration: none;
-            font-size: 1.3rem;
-            letter-spacing: 1px;
-            transition: color 0.3s ease, transform 0.3s ease;
+            color: var(--text-light);
+            transition: all 0.3s ease;
         }
 
-        .contact-link:hover {
-            color: var(--accent);
+        .contact-card:hover {
             transform: translateY(-5px);
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+        }
+
+        .card-info h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-info p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* --- Lado Derecho: Formulario Dark Mode --- */
+        .contact-form-wrapper {
+            flex: 1 1 400px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dark-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .dark-form input,
+        .dark-form select,
+        .dark-form textarea {
+            width: 100%;
+            padding: 10px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .dark-form input:focus,
+        .dark-form select:focus,
+        .dark-form textarea:focus {
+            outline: none;
+            border-bottom-color: var(--accent);
+        }
+
+        .dark-form select option {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .dark-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-submit {
+            align-self: flex-start;
+            background: var(--text-light);
+            color: var(--bg-dark);
+            border: none;
+            padding: 15px 30px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
         }
 
         /* ===================================================
-           OVERLAY DE CARPETA ABIERTA 
+           OVERLAY DE CARPETA ABIERTA Y LIGHTBOX (INTACTOS)
            =================================================== */
         .overlay {
             position: fixed;
@@ -618,9 +694,6 @@
             background-color: rgba(255, 255, 255, 0.05);
         }
 
-        /* ===================================================
-           LIGHTBOX CON NAVEGACIÓN
-           =================================================== */
         #lightbox {
             position: fixed;
             top: 0;
@@ -706,17 +779,14 @@
         <section id="acerca" class="screen-section">
             <div class="acerca-split-container">
                 <div class="acerca-left"></div>
-
                 <div class="acerca-right">
                     <h2 class="acerca-title">Acerca de mi</h2>
-
                     <div class="specialty-tags">
                         <span class="tag">Deportes</span>
                         <span class="tag">Bodas</span>
                         <span class="tag">XV Años</span>
                         <span class="tag">Momentos</span>
                     </div>
-
                     <p class="acerca-text">
                         Jesús Cepeda es un artista visual dedicado a capturar la esencia genuina de los momentos. Su
                         enfoque combina la estética clásica con una visión moderna y cinematográfica, logrando que cada
@@ -725,7 +795,6 @@
                         especializa en documentar la fuerza del deporte, la emoción de las bodas y la magia de los
                         momentos espontáneos, entregando recuerdos eternos con un sello de distinción profesional.
                     </p>
-
                     <a href="#contacto" class="btn-work">Trabajemos juntos</a>
                     <span class="signature">Jesús Cepeda</span>
                 </div>
@@ -739,18 +808,42 @@
 
         <section id="contacto" class="screen-section">
             <h2 class="acerca-title">Contáctame</h2>
-            <div class="section-content">
-                <p class="section-text">
-                    ¿Listo para crear algo extraordinario juntos?
-                </p>
-                <div class="contact-links">
-                    <a href="mailto:jesuscepeda.studio@gmail.com" class="contact-link">
-                        ✉️ jesuscepeda.studio@gmail.com
+            <p class="section-text" style="margin-bottom: 20px;">¿Listo para crear algo extraordinario juntos?</p>
+
+            <div class="contact-container">
+                <div class="contact-cards">
+                    <a href="mailto:jesuscepeda.studio@gmail.com" class="contact-card">
+                        <span class="card-icon">✉️</span>
+                        <div class="card-info">
+                            <h4>Correo Electrónico</h4>
+                            <p>jesuscepeda.studio@gmail.com</p>
+                        </div>
                     </a>
                     <a href="https://www.instagram.com/cepeda_studio?igsh=MWtxOW5mNXBuN3lmaw==" target="_blank"
-                        class="contact-link">
-                        📷 @cepeda_studio
+                        class="contact-card">
+                        <span class="card-icon">📷</span>
+                        <div class="card-info">
+                            <h4>Instagram</h4>
+                            <p>@cepeda_studio</p>
+                        </div>
                     </a>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form action="https://formspree.io/f/xnjovgqw" method="POST" class="dark-form">
+                        <input type="text" name="nombre" placeholder="Tu Nombre completo" required>
+                        <input type="email" name="email" placeholder="Tu Correo Electrónico" required>
+                        <select name="tipo_sesion" required>
+                            <option value="" disabled selected>¿Qué tipo de sesión buscas?</option>
+                            <option value="bodas">💍 Bodas</option>
+                            <option value="xv_anos">✨ XV Años</option>
+                            <option value="deportes">⚽ Deportes</option>
+                            <option value="momentos">📸 Momentos / Retrato</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                        <textarea name="mensaje" placeholder="Cuéntame tu idea..." rows="3" required></textarea>
+                        <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                    </form>
                 </div>
             </div>
         </section>

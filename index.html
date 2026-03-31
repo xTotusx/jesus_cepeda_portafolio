@@ -58,7 +58,7 @@
         }
 
         /* ===================================================
-           PANTALLA 1: INICIO (Con eslogan semi-cursivo y comillas)
+           PANTALLA 1: INICIO 
            =================================================== */
         #inicio {
             overflow: hidden;
@@ -137,7 +137,7 @@
         }
 
         /* ===================================================
-           PANTALLA 2: ACERCA DE MI (DISEÑO SPLIT SUPER GRADUAL)
+           PANTALLA 2: ACERCA DE MI (SPLIT SUPER SUAVE Y MOVIL FIX)
            =================================================== */
         #acerca {
             background-color: #111;
@@ -151,7 +151,7 @@
             height: 100%;
         }
 
-        /* Mitad izquierda: Retrato con desvanecimiento ULTRA gradual */
+        /* Mitad izquierda: Retrato con desvanecimiento ULTRA gradual (Desktop) */
         .acerca-left {
             flex: 1 1 50%;
             position: relative;
@@ -160,7 +160,7 @@
             background-position: center;
         }
 
-        /* Velo oscuro gradual que empieza desde el 10% de la foto */
+        /* Velo oscuro gradual: arranca transparente y se funde al final */
         .acerca-left::after {
             content: '';
             position: absolute;
@@ -168,8 +168,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Empieza transparente y se funde al color de fondo (#111) suavemente */
-            background: linear-gradient(to right, rgba(17, 17, 17, 0) 10%, rgba(17, 17, 17, 0.8) 50%, rgba(17, 17, 17, 1) 100%);
+            /* Ajustado para que el fade sea súper suave de izquierda a derecha */
+            background: linear-gradient(to right, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.2) 50%, rgba(17, 17, 17, 0.9) 90%, rgba(17, 17, 17, 1) 100%);
         }
 
         /* Mitad derecha: Contenido */
@@ -182,6 +182,7 @@
             align-items: flex-start;
             padding: 80px 60px;
             position: relative;
+            z-index: 2;
         }
 
         .acerca-title {
@@ -249,73 +250,68 @@
         }
 
         /* ===================================================
-           NUEVO RESPONSIVE PARA MÓVIL (Acerca de mi como Fondo)
+           NUEVO RESPONSIVE PARA MÓVIL (Acerca de mi Fixed)
            =================================================== */
         @media (max-width: 900px) {
             #acerca {
-                position: relative;
-                /* La foto se convierte en el fondo de toda la sección */
-                background-image: url('./fts/retrato-fotografo.jpeg');
-                background-size: cover;
-                background-position: center;
                 display: block;
-                /* Volvemos a block para scrollear dentro */
-            }
-
-            /* Desvanecimiento vertical gradual para movil */
-            #acerca::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(to bottom, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.7) 40%, rgba(17, 17, 17, 1) 70%);
-                z-index: 1;
+                /* Permite scroll natural si el texto es muy largo */
+                height: auto;
+                min-height: 100vh;
+                overflow-y: visible;
             }
 
             .acerca-split-container {
                 display: block;
-                /* Quitamos flex */
+                width: 100%;
                 height: auto;
-                position: relative;
-                z-index: 2;
-                /* Por encima del velo oscuro */
-                padding: 100px 20px 140px;
-                /* Padding para respirar */
+                min-height: 100vh;
             }
 
             .acerca-left {
-                display: none;
-                /* Ocultamos la mitad izquierda antigua */
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 60vh;
+                /* La foto ocupa el 60% de arriba */
+                z-index: 1;
+                background-position: top center;
+                /* Evita cortar la cara */
+            }
+
+            /* Gradiente vertical para móvil: transparente arriba, oscurece hacia abajo */
+            .acerca-left::after {
+                background: linear-gradient(to bottom, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.2) 50%, rgba(17, 17, 17, 0.95) 90%, rgba(17, 17, 17, 1) 100%);
             }
 
             .acerca-right {
+                width: 100%;
+                padding: 0 20px 80px 20px;
+                margin-top: 45vh;
+                /* El texto se monta sobre la parte oscura de la foto */
                 background-color: transparent;
-                /* Fondo transparente para ver la foto */
-                padding: 0;
-                /* Quitamos padding excesivo */
+                z-index: 2;
                 align-items: center;
-                /* Centramos todo */
                 text-align: center;
             }
 
             .acerca-title {
                 font-size: 2.5rem;
                 text-align: center;
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
 
             .specialty-tags {
                 justify-content: center;
+                margin-bottom: 25px;
             }
 
             .acerca-text {
                 font-size: 1rem;
-                margin-bottom: 50px;
+                margin-bottom: 40px;
             }
 
-            /* Firma y botón fijos abajo */
             .btn-work {
                 position: relative;
                 z-index: 3;
@@ -325,7 +321,7 @@
                 position: relative;
                 bottom: auto;
                 right: auto;
-                margin-top: 50px;
+                margin-top: 40px;
                 font-size: 1.2rem;
                 display: block;
                 text-align: center;
@@ -731,7 +727,6 @@
                     </p>
 
                     <a href="#contacto" class="btn-work">Trabajemos juntos</a>
-
                     <span class="signature">Jesús Cepeda</span>
                 </div>
             </div>
@@ -786,7 +781,7 @@
 
     <script>
         /* ===================================================
-           CONFIGURACIÓN DEL PORTAFOLIO (INTACTO)
+           CONFIGURACIÓN DEL PORTAFOLIO 
            =================================================== */
         const portfolioData = [
             {

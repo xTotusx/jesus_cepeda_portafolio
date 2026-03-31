@@ -100,12 +100,14 @@
             margin-bottom: 10px;
         }
 
+        /* --- Estilo del eslogan actualizado --- */
         p.slogan {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            color: #aaa;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: #ccc;
             font-style: italic;
             margin-bottom: 40px;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
         }
 
         .nav-links {
@@ -561,7 +563,7 @@
             <div class="bg-fx-container" id="bg-fx"></div>
             <div class="hero-content">
                 <h1 class="main-title">JESUS CEPEDA</h1>
-                <p class="slogan">Mira lo extraordinario</p>
+                <p class="slogan">"Mira lo extraordinario"</p>
                 <nav class="nav-links">
                     <a href="#acerca">Acerca de mi</a>
                     <a href="#proyectos">Mis proyectos</a>
@@ -577,7 +579,7 @@
                 </div>
                 <h2 class="acerca-title">Acerca de mi</h2>
                 <p class="acerca-text">
-                    Soy un fotógrafo dedicado a capturar momentos genuinos. Combino la estética clásica con una visión
+                    Fotógrafo dedicado a capturar momentos genuinos. Combino la estética clásica con una visión
                     moderna, haciendo que cada imagen cuente una historia única. Creo en la fuerza de los detalles y en
                     la belleza de lo auténtico.
                 </p>
@@ -642,7 +644,7 @@
             {
                 id: 'espartanos-encuentro',
                 title: 'Espartanos',
-                date: 'Mayo 2026',
+                date: 'Febrero 2026',
                 covers: ['./fts/espartanos.jpeg'],
                 photos: [
                     './fts/espartanos.jpeg',
@@ -651,8 +653,6 @@
                     './fts/espartanos-cover3.jpeg',
                     './fts/espartanos1.jpeg',
                     './fts/espartanos2.jpeg',
-                    './fts/espartanos3.jpeg',
-                    './fts/espartanos4.jpeg',
                     './fts/espartanos5.jpeg',
                     './fts/espartanos6.jpeg',
                     './fts/espartanos7.jpeg',
@@ -662,13 +662,15 @@
                     './fts/espartanos11.jpeg',
                     './fts/espartanos12.jpeg',
                     './fts/espartanos13.jpeg',
-                    './fts/espartanos14.jpeg'
+                    './fts/espartanos14.jpeg',
+                    './fts/espartanos15.jpeg',
+                    './fts/espartanos16.jpeg'
                 ]
             },
             {
                 id: 'equipo-mazatlan',
                 title: 'Mazatlan Futbol Team',
-                date: 'Mayo 2026',
+                date: 'Febrero 2026',
                 covers: ['./fts/mazatlan-cover.jpeg'],
                 photos: [
                     './fts/mazatlan1.jpeg',
@@ -687,7 +689,7 @@
             {
                 id: 'academia-porteros',
                 title: 'Academia Porteros',
-                date: 'Mayo 2026',
+                date: 'Marzo 2026',
                 covers: ['./fts/xv1-cover1.jpg'],
                 photos: [
                     './fts/retrato-fotografo.jpg',
@@ -698,7 +700,7 @@
             {
                 id: 'momentos-carpeta',
                 title: 'Momentos',
-                date: 'Mayo 2026',
+                date: 'Marzo 2026',
                 covers: ['./fts/momentos1.jpeg'],
                 photos: [
                     './fts/momentos1.jpeg',
@@ -718,7 +720,6 @@
             }
         ];
 
-        // --- ACTUALIZACIÓN AQUÍ: Se usan fotos de Picsum para los fondos aleatorios ---
         const startBackgroundPhotos = [
             'https://picsum.photos/600/800?random=10',
             'https://picsum.photos/600/800?random=11',
@@ -734,8 +735,6 @@
             './fts/momentos5.jpeg',
             './fts/momentos8.jpeg',
             './fts/momentos6.jpeg'
-
-
         ];
 
         /* ===================================================

@@ -54,14 +54,17 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 80px 20px;
+            /* Padding ajustado para no cortar el diseño split-screen */
+            padding: 0px 20px;
         }
 
         /* ===================================================
-           PANTALLA 1: INICIO 
+           PANTALLA 1: INICIO (Con eslogan semi-cursivo y comillas)
            =================================================== */
         #inicio {
             overflow: hidden;
+            padding: 80px 20px;
+            /* Padding original para inicio */
         }
 
         .bg-fx-container {
@@ -100,7 +103,6 @@
             margin-bottom: 10px;
         }
 
-        /* --- Estilo del eslogan actualizado --- */
         p.slogan {
             font-family: 'Georgia', 'Times New Roman', serif;
             font-size: clamp(1.2rem, 2.5vw, 1.8rem);
@@ -137,67 +139,154 @@
         }
 
         /* ===================================================
-           PANTALLA 2: ACERCA DE MI 
+           PANTALLA 2: ACERCA DE MI (DISEÑO SPLIT-SCREEN)
            =================================================== */
         #acerca {
             background-color: #111;
-        }
-
-        .acerca-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            text-align: center;
-            max-width: 600px;
-            padding: 40px;
-        }
-
-        .retrato-container {
-            position: relative;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
+            padding: 0;
+            /* Sin padding para ocupar toda la pantalla */
             overflow: hidden;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
         }
 
-        .retrato-container img {
+        .acerca-split-container {
+            display: flex;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            position: relative;
-            z-index: 10;
         }
 
-        .retrato-container::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+        /* Mitad izquierda: Retrato con difuminado hacia la derecha */
+        .acerca-left {
+            flex: 1 1 50%;
+            position: relative;
             background-image: url('./fts/retrato-fotografo.jpeg');
             background-size: cover;
             background-position: center;
-            filter: blur(20px) brightness(0.6);
-            opacity: 0.6;
-            z-index: 0;
+        }
+
+        /* Filtro oscuro y difuminado progresivo hacia la derecha */
+        .acerca-left::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            /* Ocupa la mitad derecha de la foto */
+            height: 100%;
+            background: linear-gradient(to right, transparent, #111);
+            backdrop-filter: blur(15px);
+        }
+
+        /* Mitad derecha: Contenido con etiquetas, texto y firma */
+        .acerca-right {
+            flex: 1 1 50%;
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 80px 60px;
+            position: relative;
         }
 
         .acerca-title {
             font-size: 3rem;
             font-weight: 300;
             color: var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Contenedor de etiquetas */
+        .specialty-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .acerca-text {
             font-size: 1.1rem;
-            line-height: 1.6;
+            line-height: 1.8;
             color: #ccc;
-            max-width: 500px;
+            max-width: 550px;
+            margin-bottom: 40px;
+        }
+
+        /* Botón Trabajemos Juntos (CTA) */
+        .btn-work {
+            color: var(--bg-dark);
+            background-color: var(--text-light);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 16px 32px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-work:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Firma en cursiva en la esquina inferior */
+        .signature {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+        }
+
+        /* Responsive para celulares: el split se vuelve una columna */
+        @media (max-width: 900px) {
+            .acerca-split-container {
+                flex-direction: column;
+            }
+
+            .acerca-left {
+                flex: 1 1 40%;
+            }
+
+            .acerca-left::after {
+                width: 100%;
+                height: 50%;
+                top: auto;
+                bottom: 0;
+                background: linear-gradient(to bottom, transparent, #111);
+            }
+
+            .acerca-right {
+                flex: 1 1 60%;
+                padding: 40px 20px;
+            }
+
+            .acerca-title {
+                font-size: 2.5rem;
+            }
+
+            .signature {
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.2rem;
+            }
         }
 
         /* ===================================================
@@ -206,6 +295,8 @@
         #proyectos {
             background-color: #151515;
             justify-content: flex-start;
+            padding: 80px 20px;
+            /* Padding original para proyectos */
         }
 
         .folders-grid-container {
@@ -287,6 +378,8 @@
            =================================================== */
         #contacto {
             background-color: #0d0d0d;
+            padding: 80px 20px;
+            /* Padding original para contacto */
         }
 
         .section-content {
@@ -573,16 +666,32 @@
         </section>
 
         <section id="acerca" class="screen-section">
-            <div class="acerca-wrapper">
-                <div class="retrato-container">
-                    <img src="./fts/retrato-fotografo.jpeg" alt="Jesus Cepeda" loading="lazy">
+            <div class="acerca-split-container">
+                <div class="acerca-left"></div>
+
+                <div class="acerca-right">
+                    <h2 class="acerca-title">Acerca de mi</h2>
+
+                    <div class="specialty-tags">
+                        <span class="tag">Deportes</span>
+                        <span class="tag">Bodas</span>
+                        <span class="tag">XV Años</span>
+                        <span class="tag">Momentos</span>
+                    </div>
+
+                    <p class="acerca-text">
+                        Jesús Cepeda es un artista visual dedicado a capturar la esencia genuina de los momentos. Su
+                        enfoque combina la estética clásica con una visión moderna y cinematográfica, logrando que cada
+                        imagen cuente una historia única y conmovedora. <br><br>
+                        Con una sensibilidad especial para los detalles y la belleza de lo auténtico, Jesús se
+                        especializa en documentar la fuerza del deporte, la emoción de las bodas y la magia de los
+                        momentos espontáneos, entregando recuerdos eternos con un sello de distinción profesional.
+                    </p>
+
+                    <a href="#contacto" class="btn-work">Trabajemos juntos</a>
+
+                    <span class="signature">Jesús Cepeda</span>
                 </div>
-                <h2 class="acerca-title">Acerca de mi</h2>
-                <p class="acerca-text">
-                    Fotógrafo dedicado a capturar momentos genuinos. Combino la estética clásica con una visión
-                    moderna, haciendo que cada imagen cuente una historia única. Creo en la fuerza de los detalles y en
-                    la belleza de lo auténtico.
-                </p>
             </div>
         </section>
 
@@ -613,14 +722,12 @@
     <div id="gallery-overlay" class="overlay">
         <div id="dynamic-bg-overlay"></div>
         <button class="fixed-back-btn" onclick="cerrarOverlay()">← Volver</button>
-
         <section class="overlay-hero-section" id="overlay-hero-section">
             <div class="overlay-hero-content">
                 <h2 class="gallery-title-hero" id="gallery-title-hero">Nombre del Evento</h2>
                 <p class="scroll-indicator">↓ Desliza para ver la galería ↓</p>
             </div>
         </section>
-
         <section class="overlay-gallery-section">
             <div class="overlay-content">
                 <div class="photos-grid" id="photos-container-overlay"></div>
@@ -637,9 +744,8 @@
 
     <script>
         /* ===================================================
-           CONFIGURACIÓN DEL PORTAFOLIO 
+           CONFIGURACIÓN DEL PORTAFOLIO (INTACTO)
            =================================================== */
-
         const portfolioData = [
             {
                 id: 'espartanos-encuentro',
@@ -738,7 +844,7 @@
         ];
 
         /* ===================================================
-           LÓGICA DEL SISTEMA DE GALERÍAS Y NAVEGACIÓN
+           LÓGICA JAVASCRIPT (INTACTA)
            =================================================== */
         const foldersContainer = document.getElementById('folders-container');
         const overlay = document.getElementById('gallery-overlay');
@@ -838,9 +944,6 @@
             else if (e.key === 'ArrowLeft' && isLightboxOpen) cambiarFoto(-1);
         }
 
-        /* ===================================================
-           LÓGICA DEL FONDO FLOTANTE INICIAL
-           =================================================== */
         const fxContainer = document.getElementById('bg-fx');
 
         function spawnFloatingImage() {
@@ -871,7 +974,6 @@
         setInterval(spawnFloatingImage, 2500);
         spawnFloatingImage();
         initPortfolio();
-
     </script>
 </body>
 

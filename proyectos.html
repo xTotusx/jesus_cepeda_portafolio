@@ -4,116 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JESUS CEPEDA | Fotografía</title>
+    <title>Portafolio Completo | JESUS CEPEDA</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Un par de ajustes ligeros solo para que esta página se vea sin bloqueos */
+        body {
+            padding: 40px 20px;
+            overflow-y: auto;
+        }
+
+        .scroll-container {
+            height: auto;
+            overflow-y: visible;
+            scroll-snap-type: none;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="scroll-container">
-        <section id="inicio" class="screen-section">
-            <div class="bg-fx-container" id="bg-fx"></div>
-            <div class="hero-content">
-                <h1 class="main-title">JESUS CEPEDA</h1>
-                <p class="slogan">"Mira lo extraordinario"</p>
-                <nav class="nav-links">
-                    <a href="#acerca">Acerca de mi</a>
-                    <a href="#proyectos">Mis proyectos</a>
-                    <a href="#contacto">Contáctame</a>
-                </nav>
-            </div>
-        </section>
-
-        <section id="acerca" class="screen-section">
-            <div class="acerca-split-container">
-                <div class="acerca-left"></div>
-                <div class="acerca-right">
-                    <h2 class="acerca-title">Acerca de mi</h2>
-                    <div class="specialty-tags">
-                        <span class="tag">Deportes</span><span class="tag">Bodas</span><span class="tag">XV
-                            Años</span><span class="tag">Momentos</span>
-                    </div>
-                    <p class="acerca-text">
-                        Jesús Cepeda es un artista visual dedicado a capturar la esencia genuina de los momentos. Su
-                        enfoque combina la estética clásica con una visión moderna y cinematográfica, logrando que cada
-                        imagen cuente una historia única y conmovedora. <br><br>
-                        Con una sensibilidad especial para los detalles y la belleza de lo auténtico, Jesús se
-                        especializa en documentar la fuerza del deporte, la emoción de las bodas y la magia de los
-                        momentos espontáneos, entregando recuerdos eternos con un sello de distinción profesional.
-                    </p>
-                    <a href="#contacto" class="btn-work">Trabajemos juntos</a>
-                    <span class="signature">Jesús Cepeda</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="proyectos" class="screen-section">
-            <h2 class="acerca-title" style="margin-top: 50px;">Mis proyectos</h2>
-            <div class="carousel-container" id="folders-container">
-            </div>
-            <a href="proyectos.html" class="btn-view-all">Ver portafolio completo</a>
-        </section>
-
-        <section id="contacto" class="screen-section">
-            <h2 class="acerca-title">Contáctame</h2>
-            <div class="contact-container">
-                <div class="contact-cards">
-                    <a href="mailto:jesuscepeda.studio@gmail.com" class="contact-card">
-                        <span class="card-icon">✉️</span>
-                        <div class="card-info">
-                            <h4>Correo Electrónico</h4>
-                            <p>jesuscepeda.studio@gmail.com</p>
-                        </div>
-                    </a>
-                    <a href="https://www.instagram.com/cepeda_studio?igsh=MWtxOW5mNXBuN3lmaw==" target="_blank"
-                        class="contact-card">
-                        <span class="card-icon">📷</span>
-                        <div class="card-info">
-                            <h4>Instagram</h4>
-                            <p>@cepeda_studio</p>
-                        </div>
-                    </a>
-                    <a href="https://wa.me/528116621197" target="_blank" class="contact-card">
-                        <span class="card-icon">📱</span>
-                        <div class="card-info">
-                            <h4>WhatsApp</h4>
-                            <p>81 1662 1197</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="contact-form-wrapper">
-                    <form action="https://formspree.io/f/TU_ID_DE_FORMSPREE" method="POST" class="dark-form">
-                        <input type="text" name="nombre" placeholder="Tu Nombre completo" required>
-                        <input type="email" name="email" placeholder="Tu Correo Electrónico" required>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Fecha del evento</label>
-                                <input type="date" name="fecha_evento" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Hora aprox.</label>
-                                <input type="time" name="hora_evento" required>
-                            </div>
-                        </div>
-
-                        <select name="tipo_sesion" required>
-                            <option value="" disabled selected>¿Qué tipo de sesión buscas?</option>
-                            <option value="bodas">💍 Bodas</option>
-                            <option value="xv_anos">✨ XV Años</option>
-                            <option value="deportes">⚽ Deportes</option>
-                            <option value="momentos">📸 Momentos / Retrato</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                        <textarea name="mensaje" placeholder="Cuéntame tu idea o detalles del evento..." rows="2"
-                            required></textarea>
-                        <button type="submit" class="btn-submit">Enviar Mensaje</button>
-                    </form>
-                </div>
-            </div>
-        </section>
+    <div class="header">
+        <h1>PORTAFOLIO COMPLETO</h1>
+        <a href="index.html" class="btn-back">← Volver al Inicio</a>
     </div>
+
+    <div class="folders-grid-container" id="folders-container"></div>
 
     <div id="gallery-overlay" class="overlay">
         <div id="dynamic-bg-overlay"></div>
@@ -140,7 +55,7 @@
 
     <script>
         /* ===================================================
-           CONFIGURACIÓN DEL PORTAFOLIO 
+           CONFIGURACIÓN DEL PORTAFOLIO COMPLETO
            =================================================== */
         const portfolioData = [
             {
@@ -197,15 +112,6 @@
             }
         ];
 
-        const startBackgroundPhotos = [
-            'https://picsum.photos/600/800?random=10', 'https://picsum.photos/600/800?random=11',
-            'https://picsum.photos/800/600?random=12', 'https://picsum.photos/600/800?random=13',
-            'https://picsum.photos/800/600?random=14', 'https://picsum.photos/600/800?random=15',
-            'https://picsum.photos/600/800?random=16', 'https://picsum.photos/600/800?random=17',
-            'https://picsum.photos/600/800?random=18', './fts/momentos1.jpeg', './fts/momentos4.jpeg',
-            './fts/momentos5.jpeg', './fts/momentos8.jpeg', './fts/momentos6.jpeg'
-        ];
-
         /* ===================================================
            LÓGICA JAVASCRIPT
            =================================================== */
@@ -222,8 +128,8 @@
         let currentPhotoIndex = 0;
 
         function initPortfolio() {
-            // Dibuja solo los primeros 3
-            portfolioData.slice(0, 3).forEach(folder => {
+            // AQUI DIBUJA TODAS LAS CARPETAS
+            portfolioData.forEach(folder => {
                 const card = document.createElement('div');
                 card.className = 'folder-card';
                 card.onclick = () => abrirGalería(folder);
@@ -308,35 +214,6 @@
             else if (e.key === 'ArrowLeft' && isLightboxOpen) cambiarFoto(-1);
         }
 
-        const fxContainer = document.getElementById('bg-fx');
-
-        function spawnFloatingImage() {
-            if (startBackgroundPhotos.length === 0) return;
-            const img = document.createElement('img');
-            img.src = startBackgroundPhotos[Math.floor(Math.random() * startBackgroundPhotos.length)];
-            img.className = 'floating-img';
-
-            const randomTop = Math.random() * 60;
-            const randomLeft = Math.random() * 60;
-            img.style.top = `${randomTop}%`;
-            img.style.left = `${randomLeft}%`;
-
-            const randomRotate = (Math.random() - 0.5) * 20;
-            img.style.transform = `scale(0.8) rotate(${randomRotate}deg) translate(0px, 20px)`;
-
-            fxContainer.appendChild(img);
-
-            setTimeout(() => {
-                img.style.opacity = '0.2';
-                img.style.transform = `scale(1.1) rotate(${randomRotate + 5}deg) translate(0px, -20px)`;
-            }, 50);
-
-            setTimeout(() => { img.style.opacity = '0'; }, 4000);
-            setTimeout(() => { img.remove(); }, 6000);
-        }
-
-        setInterval(spawnFloatingImage, 2500);
-        spawnFloatingImage();
         initPortfolio();
     </script>
 </body>
